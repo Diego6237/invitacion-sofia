@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Una invitación para Sofía ♥</title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+* { box-sizing: border-box; }
+
+body {
+
+  margin: 0;
+
+  min-height: 100vh;
+
+  overflow-x: hidden;
+
+  display: grid;
+
+  place-items: center;
+
+  padding: 28px 16px;
+
+  color: #fff7f0;
+
+  font-family: 'DM Sans', sans-serif;
+
+  background:
+
+    radial-gradient(circle at 20% 15%, #8d3656, transparent 35%),
+
+    radial-gradient(circle at 85% 85%, #321020, transparent 40%),
+
+    linear-gradient(135deg, #260d1b, #5a1734, #301020);
+
+}
+
+.wrap {
+
+  width: min(100%, 520px);
+
+  text-align: center;
+
+  position: relative;
+
+  z-index: 1;
+
+}
+
+.eyebrow {
+
+  color: #f0c9d2;
+
+  letter-spacing: .24em;
+
+  text-transform: uppercase;
+
+  font-size: .68rem;
+
+  margin-bottom: 26px;
+
+}
+
+.intro {
+
+  font-family: 'Playfair Display', serif;
+
+  font-size: 2rem;
+
+  margin-bottom: 24px;
+
+}
+
+.envelope-area {
+
+  height: 245px;
+
+  display: grid;
+
+  place-items: center;
+
+  perspective: 1000px;
+
+}
+
+.envelope {
+
+  position: relative;
+
+  width: min(330px, 82vw);
+
+  height: 190px;
+
+  cursor: pointer;
+
+  filter: drop-shadow(0 18px 25px #16071188);
+
+}
+
+.env-back {
+
+  position: absolute;
+
+  inset: 0;
+
+  background: #e8b7b5;
+
+  border-radius: 8px;
+
+}
+
+.env-front {
+
+  position: absolute;
+
+  inset: 0;
+
+  background: linear-gradient(145deg, #d88f9d, #b95e79);
+
+  clip-path: polygon(0 0, 50% 57%, 100% 0, 100% 100%, 0 100%);
+
+  border-radius: 8px;
+
+}
+
+.env-flap {
+
+  position: absolute;
+
+  inset: 0;
+
+  background: linear-gradient(145deg, #f0c9c4, #d995a3);
+
+  clip-path: polygon(0 0, 100% 0, 50% 60%);
+
+  transform-origin: top;
+
+  transition: transform .85s ease;
+
+  z-index: 4;
+
+}
+
+.seal {
+
+  position: absolute;
+
+  z-index: 5;
+
+  left: 50%;
+
+  top: 58%;
+
+  transform: translate(-50%, -50%);
+
+  width: 43px;
+
+  height: 43px;
+
+  display: grid;
+
+  place-items: center;
+
+  border-radius: 50%;
+
+  color: white;
+
+  background: #7b2444;
+
+  border: 1px solid #f4d6c0;
+
+  font-size: 20px;
+
+}
+
+.letter {
+
+  position: absolute;
+
+  z-index: 2;
+
+  left: 6%;
+
+  width: 88%;
+
+  bottom: 7px;
+
+  height: 168px;
+
+  padding: 20px 12px;
+
+  border-radius: 5px;
+
+  background: #fff7f0;
+
+  color: #641b38;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  transition: transform .9s ease, height .9s ease;
+
+}
+
+.letter small {
+
+  letter-spacing: .2em;
+
+  text-transform: uppercase;
+
+  font-size: .58rem;
+
+  color: #a45a70;
+
+}
+
+.letter strong {
+
+  font-family: 'Playfair Display', serif;
+
+  font-size: 1.65rem;
+
+  margin: 8px 0 3px;
+
+}
+
+.letter span {
+
+  font-size: .75rem;
+
+  color: #8a5262;
+
+}
+
+.opened .env-flap {
+
+  transform: rotateX(180deg);
+
+  z-index: 1;
+
+}
+
+.opened .letter {
+
+  transform: translateY(-112px);
+
+  height: 190px;
+
+  transition-delay: .2s;
+
+}
+
+.opened .seal {
+
+  opacity: 0;
+
+}
+
+.hint {
+
+  color: #f3cbd4;
+
+  font-size: .83rem;
+
+  margin-top: 6px;
+
+}
+
+.invite {
+
+  opacity: 0;
+
+  transform: translateY(18px);
+
+  max-height: 0;
+
+  overflow: hidden;
+
+  transition: all .8s ease;
+
+}
+
+.show .invite {
+
+  opacity: 1;
+
+  transform: translateY(0);
+
+  max-height: 650px;
+
+  margin-top: 22px;
+
+}
+
+.card {
+
+  background: linear-gradient(150deg, #fff9f2, #f8e7e3);
+
+  color: #512038;
+
+  border: 1px solid #f0d3c9;
+
+  border-radius: 18px;
+
+  padding: 28px 22px 25px;
+
+  box-shadow: 0 18px 55px #17071355;
+
+}
+
+.tiny {
+
+  color: #a65a70;
+
+  text-transform: uppercase;
+
+  letter-spacing: .22em;
+
+  font-size: .65rem;
+
+}
+
+h1 {
+
+  font-family: 'Playfair Display', serif;
+
+  font-size: clamp(2rem, 8vw, 3rem);
+
+  line-height: 1.08;
+
+  margin: 12px 0 8px;
+
+}
+
+.date {
+
+  font-family: 'Playfair Display', serif;
+
+  font-size: 1.35rem;
+
+  color: #9b3658;
+
+  margin: 14px 0 18px;
+
+}
+
+.message {
+
+  font-size: .98rem;
+
+  line-height: 1.75;
+
+  color: #704357;
+
+  margin: 0 auto;
+
+  max-width: 370px;
+
+}
+
+.artist {
+
+  margin: 22px auto 8px;
+
+  padding: 14px 12px;
+
+  border-top: 1px solid #e8c9ce;
+
+  border-bottom: 1px solid #e8c9ce;
+
+}
+
+.artist b {
+
+  display: block;
+
+  font-family: 'Playfair Display', serif;
+
+  font-size: 1.55rem;
+
+  color: #762541;
+
+}
+
+.artist span {
+
+  color: #a45a70;
+
+  font-size: .75rem;
+
+  letter-spacing: .12em;
+
+  text-transform: uppercase;
+
+}
+
+.closing {
+
+  margin-top: 19px;
+
+  font-family: 'Playfair Display', serif;
+
+  font-size: 1.2rem;
+
+  color: #8e3454;
+
+}
+
+.heart {
+
+  position: fixed;
+
+  bottom: -30px;
+
+  color: #f4b7c7;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  animation: floatUp 5s linear forwards;
+
+  z-index: 0;
+
+}
+
+@keyframes floatUp {
+
+  0% {
+
+    transform: translateY(0) scale(.7);
+
+    opacity: 0;
+
+  }
+
+  15% { opacity: .8; }
+
+  100% {
+
+    transform: translateY(-110vh) scale(1.25) rotate(25deg);
+
+    opacity: 0;
+
+  }
+
+}
+
+.again {
+
+  margin-top: 16px;
+
+  color: #f0c9d2;
+
+  background: none;
+
+  border: 0;
+
+  text-decoration: underline;
+
+  cursor: pointer;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<main class="wrap" id="scene">
+
+  <div class="eyebrow">Una pequeña sorpresa para ti</div>
+
+  <p class="intro">
+
+    Sofía, tienes una invitación especial…
+
+  </p>
+
+  <div class="envelope-area">
+
+    <div class="envelope" id="envelope">
+
+      <div class="env-back"></div>
+
+      <div class="letter">
+
+        <small>Para alguien muy especial</small>
+
+        <strong>Para Sofía</strong>
+
+        <span>Con mucho cariño ♥</span>
+
+      </div>
+
+      <div class="env-front"></div>
+
+      <div class="env-flap"></div>
+
+      <div class="seal">♥</div>
+
+    </div>
+
+  </div>
+
+  <p class="hint" id="hint">
+
+    Toca el sobre para abrirlo ♥
+
+  </p>
+
+  <section class="invite">
+
+    <div class="card">
+
+      <div class="tiny">
+
+        Aparta esta fecha, cumpleañera
+
+      </div>
+
+      <h1>Este 10 de diciembre…</h1>
+
+      <div class="date">
+
+        no hagas planes. ♥
+
+      </div>
+
+      <p class="message">
+
+        Porque tenemos una cita para celebrar tu cumpleaños.
+
+        Quiero regalarte una noche bonita, de esas que se quedan
+
+        guardadas entre los recuerdos que nos hacen sonreír.
+
+      </p>
+
+      <div class="artist">
+
+        <span>Una noche para cantar a todo pulmón con</span>
+
+        <b>Mon Laferte</b>
+
+      </div>
+
+      <p class="message">
+
+        Tu regalo es vivir esta experiencia juntos.
+
+        Tú solo preocúpate por disfrutarla.
+
+      </p>
+
+      <p class="closing">
+
+        Feliz casi cumpleaños, bonita. ♥
+
+      </p>
+
+    </div>
+
+    <button class="again" id="again">
+
+      Volver a cerrar el sobre
+
+    </button>
+
+  </section>
+
+</main>
+
+<script>
+
+const scene = document.getElementById('scene');
+
+const envelope = document.getElementById('envelope');
+
+const again = document.getElementById('again');
+
+let isOpen = false;
+
+function hearts() {
+
+  for (let i = 0; i < 18; i++) {
+
+    setTimeout(() => {
+
+      const h = document.createElement('span');
+
+      h.className = 'heart';
+
+      h.textContent = Math.random() > .35 ? '♥' : '♡';
+
+      h.style.left = Math.random() * 100 + 'vw';
+
+      h.style.fontSize = (12 + Math.random() * 22) + 'px';
+
+      h.style.animationDuration = (4 + Math.random() * 3) + 's';
+
+      document.body.appendChild(h);
+
+      setTimeout(() => h.remove(), 7500);
+
+    }, i * 115);
+
+  }
+
+}
+
+function openLetter() {
+
+  if (isOpen) return;
+
+  isOpen = true;
+
+  envelope.classList.add('opened');
+
+  scene.classList.add('show');
+
+  document.getElementById('hint').textContent =
+
+    'Una sorpresa hecha especialmente para ti ♥';
+
+  setTimeout(hearts, 450);
+
+}
+
+function closeLetter() {
+
+  isOpen = false;
+
+  envelope.classList.remove('opened');
+
+  scene.classList.remove('show');
+
+  document.getElementById('hint').textContent =
+
+    'Toca el sobre para abrirlo ♥';
+
+}
+
+envelope.addEventListener('click', openLetter);
+
+again.addEventListener('click', closeLetter);
+
+envelope.addEventListener('keydown', e => {
+
+  if (e.key === 'Enter' || e.key === ' ') {
+
+    e.preventDefault();
+
+    openLetter();
+
+  }
+
+});
+
+</script>
+
+</body>
+
+</html>
